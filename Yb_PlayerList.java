@@ -1,14 +1,14 @@
 /**
  * Write a description of class Player here.
  *
- * @author (your name)
- * @version (a version number or a date)
+     * @author (Yamini)
+ * @version (25 April, 2021 version number or a date)
  */
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Collections;
 
-public class PlayerList
+public class Yb_PlayerList
 {
     // list of player objects
     private ArrayList<Player> playerList;
@@ -16,7 +16,7 @@ public class PlayerList
     /**
      * Constructor for objects of class Player
      */
-    public PlayerList() {
+    public Yb_PlayerList() {
         // initialise the player list
         playerList = new ArrayList<>();
     }
