@@ -16,10 +16,10 @@ import java.io.FileNotFoundException;
  
 /**
  * This program demonstrates how to use JFrame and LayoutManager.
- * @author Vinh Bui
+ * @author Yamini
  */
 
-public class LoginForm extends JFrame implements ActionListener {
+public class Yb_LoginForm extends JFrame implements ActionListener {
     private JLabel labelUsername;
     private JLabel labelPassword;   
     private JTextField textUsername;
@@ -27,7 +27,7 @@ public class LoginForm extends JFrame implements ActionListener {
     private JButton buttonLogin;
     private PlayerList playerList;
  
-    public LoginForm() {
+    public Yb_LoginForm() {
         super("Login Form");
         labelUsername = new JLabel("Enter username: ");
         labelPassword = new JLabel("Enter password: ");   
@@ -116,7 +116,7 @@ public class LoginForm extends JFrame implements ActionListener {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new LoginForm().setVisible(true);
+                new Yb_LoginForm().setVisible(true);
             }
         });
     }
