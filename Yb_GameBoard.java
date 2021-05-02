@@ -3,7 +3,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
-public class Yb_GameBoard extends JPanel {    
+abstract class Yb_GameBoard extends JPanel {    
     int xcells = 30;    
     int ycells = 30;
     int szcell = 10;       
@@ -19,4 +19,19 @@ public class Yb_GameBoard extends JPanel {
         super.paintComponent(g);
     }
     
+    /** Method Exit
+     * This method will allow user to close the game window
+     * 
+     */
+    abstract void Exit();
+    
+    /** Method Resize
+     * This method will allow user to change the screen size of the window
+     * 
+     */
+    abstract void Resize();
 }
+
+
+
+

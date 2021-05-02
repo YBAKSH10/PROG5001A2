@@ -3,5 +3,5 @@ comment0.target=Yb_Prey
 comment0.text=\r\n\ Class\ Prey\ represents\ any\ prey\ object.\r\n\r\n\ @Yamini(23706019)\ \r\n\ @Version\ 2.0\r\n
 comment1.params=
 comment1.target=void\ Position()
-comment1.text=\r\n\ Method\ Prey\r\n\ Will\ help\ user\ to\ change\ its\ position\r\n
+comment1.text=\r\n\ Method\ Prey\r\n\ Will\ help\ to\ change\ its\ position\r\n
 numComments=2
