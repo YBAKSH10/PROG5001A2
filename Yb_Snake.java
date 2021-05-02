@@ -1,16 +1,27 @@
 /**
- * Write a description of class Snake here.
+ * The given snake class is an abstract class that defines its methods.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Yamini
+ * @version 2.0 (23706019)
  */
-public class Yb_Snake
+abstract class Yb_Snake
 {
-    /**
-     * Constructor for objects of class Snake
+    /** Method Move
+     * This method will help the snake to move in various directions using the arrow keys.
+     * 
      */
-    public Yb_Snake() {
-        // initialise instance variables        
-    }
-
+    public abstract void Move();
+    
+    /** Method EatPrey
+     * This method will allow snake to eat the prey
+     * 
+     */
+    public abstract void EatPrey();
+    
+    /** Method Grow
+     * This method will allow snake to eat the prey and grow.
+     * 
+     */
+    public abstract void Grow();
 }
+
