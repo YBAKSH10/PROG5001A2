@@ -23,13 +23,13 @@ abstract class Yb_GameBoard extends JPanel {
      * This method will allow user to close the game window
      * 
      */
-    abstract void Exit();
+    public abstract void Exit();
     
     /** Method Resize
      * This method will allow user to change the screen size of the window
      * 
      */
-    abstract void Resize();
+    public abstract void Resize();
 }
 
 
