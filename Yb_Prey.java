@@ -1,14 +1,15 @@
 /**
  * Class Prey represents any prey object.
  *
- * @author 
- * @version
+ * @Yamini(23706019) 
+ * @Version 2.0
  */
-public class Yb_Prey {
+abstract class Yb_Prey {
     /**
-     * Constructor for objects of class Prey
+     * Method Prey
+     * Will help to change its position
      */
-    public Yb_Prey()
+    public abstract void Position();
     {
     }    
 }
