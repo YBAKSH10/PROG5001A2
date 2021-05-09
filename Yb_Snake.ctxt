@@ -1,7 +1,18 @@
 #BlueJ class context
 comment0.target=Yb_Snake
-comment0.text=\r\n\ The\ given\ snake\ class\ is\ an\ abstract\ class\ that\ defines\ its\ methods.\r\n\r\n\ @author\ Yamini\r\n\ @version\ 2.0\ (23706019)\r\n
 comment1.params=
-comment1.target=void\ Move()
-comment1.text=\ Method\ Move\r\n\ This\ method\ will\ help\ the\ snake\ to\ move\ in\ various\ directions\ using\ the\ arrow\ keys.\r\n\ \r\n
-numComments=2
+comment1.target=Yb_Snake()
+comment2.params=g
+comment2.target=void\ paintComponent(java.awt.Graphics)
+comment3.params=args
+comment3.target=void\ main(java.lang.String[])
+comment4.params=
+comment4.target=void\ Move()
+comment4.text=\ Method\ Move\r\n\ This\ method\ will\ help\ the\ snake\ to\ move\ in\ various\ directions\ using\ the\ arrow\ keys.\r\n\ \r\n
+comment5.params=
+comment5.target=void\ EatPrey()
+comment5.text=\ Method\ EatPrey\r\n\ This\ method\ will\ allow\ snake\ to\ eat\ the\ prey\r\n\ \r\n
+comment6.params=
+comment6.target=void\ Grow()
+comment6.text=\ Method\ Grow\r\n\ This\ method\ will\ allow\ snake\ to\ eat\ the\ prey\ and\ grow.\r\n\ \r\n
+numComments=7
