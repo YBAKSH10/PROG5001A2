@@ -1,13 +1,11 @@
 #BlueJ class context
 comment0.target=YB_Prey
 comment0.text=\r\n\ Class\ Prey\ represents\ any\ prey\ object.\r\n\r\n\ @Yamini(23706019)\ \r\n\ @Version\ 2.0\r\n
-comment1.params=image_path\ width\ height
-comment1.target=YB_Prey(java.lang.String,\ int,\ int)
-comment2.params=g
-comment2.target=void\ paintComponent(java.awt.Graphics)
-comment3.params=args
-comment3.target=void\ main(java.lang.String[])
-comment4.params=
-comment4.target=void\ Position()
-comment4.text=\r\n\ Method\ Position\r\n\ This\ allows\ prey\ to\ chnage\ its\ position\r\n
-numComments=5
+comment1.params=
+comment1.target=YB_Prey()
+comment2.params=RAND_POS\ DOT_SIZE
+comment2.target=void\ position(int,\ int)
+comment2.text=\r\n\ Method\ Position\r\n\ This\ allows\ prey\ to\ chnage\ its\ position\r\n
+comment3.params=x\ y\ RAND_POS\ DOT_SIZE
+comment3.target=void\ checkPrey(int,\ int,\ int,\ int)
+numComments=4
