@@ -18,7 +18,7 @@ import javax.swing.border.LineBorder;
  * @author Yamini
  */
 
-public class Yb_SnakeGame extends JFrame {
+public class YB_SnakeGame extends JFrame {
     private JLabel GameOver;
     private JButton ClickToPlay;
     private JLabel TopLayersScore;   
@@ -30,7 +30,7 @@ public class Yb_SnakeGame extends JFrame {
     private Graphics g;
     private JLabel MySnakeGame; 
     
-     public Yb_SnakeGame(String SnakeGame) {  
+     public YB_SnakeGame(String SnakeGame) {  
          super(SnakeGame);
          //setTitle(SnakeGameTille);
         //setResizable(true);
@@ -139,7 +139,7 @@ public class Yb_SnakeGame extends JFrame {
     public static void main(String[] args) {        
 //        EventQueue.invokeLater(() -> {
             //create the game with a game title as follow: The Snake Game (C) Your_Name
-            JFrame sgame = new Yb_SnakeGame("snake");
+            JFrame sgame = new YB_SnakeGame("snake");
             sgame.setVisible(true);
 //        });
     }

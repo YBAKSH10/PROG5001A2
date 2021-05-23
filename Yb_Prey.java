@@ -13,9 +13,9 @@ import javax.swing.JLabel;
  * @Version 2.0
  */
 
-public class Yb_Prey extends JPanel {
+public class YB_Prey extends JPanel {
     Image img;
-    public Yb_Prey(String image_path, int width, int height) {
+    public YB_Prey(String image_path, int width, int height) {
         img = new ImageIcon(image_path).getImage();
         //img = img.getScaledInstance(width, height, Image.SCALE_DEFAULT);
         Dimension size = new Dimension(width, height);
@@ -30,7 +30,7 @@ public class Yb_Prey extends JPanel {
   public static void main(String args[]) {
     JFrame frame = new JFrame("Image prey");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    Yb_Prey panel = new Yb_Prey("images/smile.png",1237, 50);
+    YB_Prey panel = new YB_Prey("images/smile.png",1237, 50);
     
     frame.add(panel);
     frame.setSize(300, 200);

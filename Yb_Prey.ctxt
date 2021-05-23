@@ -1,8 +1,8 @@
 #BlueJ class context
-comment0.target=Yb_Prey
+comment0.target=YB_Prey
 comment0.text=\r\n\ Class\ Prey\ represents\ any\ prey\ object.\r\n\r\n\ @Yamini(23706019)\ \r\n\ @Version\ 2.0\r\n
 comment1.params=image_path\ width\ height
-comment1.target=Yb_Prey(java.lang.String,\ int,\ int)
+comment1.target=YB_Prey(java.lang.String,\ int,\ int)
 comment2.params=g
 comment2.target=void\ paintComponent(java.awt.Graphics)
 comment3.params=args

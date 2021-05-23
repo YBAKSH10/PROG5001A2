@@ -1,7 +1,7 @@
 #BlueJ class context
-comment0.target=Yb_PlayerList
+comment0.target=YB_PlayerList
 comment1.params=
-comment1.target=Yb_PlayerList()
+comment1.target=YB_PlayerList()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Player\r\n
 comment2.params=name\ password
 comment2.target=void\ add(java.lang.String,\ java.lang.String)

@@ -13,7 +13,7 @@ import javax.swing.JLabel;
  * @author (Yamini)
  * @version (2.0 or  May 13, 2021)
  */
-public class Yb_Snake  extends JPanel
+public class YB_Snake  extends JPanel
 {
 
     Image face;
@@ -22,7 +22,7 @@ public class Yb_Snake  extends JPanel
     /**
      * Constructor for objects of class Snake
      */
-    public Yb_Snake() {
+    public YB_Snake() {
         // initialise instance variables   
         face = new ImageIcon("images/face.png").getImage();
         tail = new ImageIcon("images/tail.png").getImage();
@@ -56,7 +56,7 @@ public class Yb_Snake  extends JPanel
         JFrame frame = new JFrame("Image Of Snake");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Yb_Snake panel = new Yb_Snake();
+        YB_Snake panel = new YB_Snake();
 
         frame.add(panel);
         frame.setSize(800, 600);

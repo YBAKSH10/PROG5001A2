@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Collections;
 
-public class Yb_PlayerList
+public class YB_PlayerList
 {
     // list of player objects
     private ArrayList<Player> playerList;
@@ -16,7 +16,7 @@ public class Yb_PlayerList
     /**
      * Constructor for objects of class Player
      */
-    public Yb_PlayerList() {
+    public YB_PlayerList() {
         // initialise the player list
         playerList = new ArrayList<>();
     }
