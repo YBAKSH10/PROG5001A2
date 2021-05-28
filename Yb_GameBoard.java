@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.*;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -12,6 +13,8 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import java.awt.event.KeyListener;
+
 /**
  * Class YB_GameBoard explains about JPanel arranged in GridBag.
  *
@@ -19,13 +22,15 @@ import javax.swing.Timer;
  * @version (2.0 or  May 13, 2021)
  */
 
-public class YB_GameBoard extends JPanel implements ActionListener {
-
-    private final int B_WIDTH = 300; 
-    private final int B_HEIGHT = 300;
+//[https://www.geeksforgeeks.org/java-and-multiple-inheritance/]
+//Syntax for multiple inheritance
+public class YB_GameBoard extends JPanel implements ActionListener, KeyListener {
+    //public class YB_GameBoard extends JFrame implements KeyListener{
+    private final int B_WIDTH = 600; 
+    private final int B_HEIGHT = 600;
     private final int DOT_SIZE = 10;  
     private final int ALL_DOTS = 900; 
-    private final int RAND_POS = 20; 
+    private final int RAND_POS = 29; 
     private final int DELAY = 140; 
     private final int x[] = new int[ALL_DOTS]; 
     private final int y[] = new int[ALL_DOTS]; 
@@ -41,21 +46,21 @@ public class YB_GameBoard extends JPanel implements ActionListener {
     private Image tail; 
     private Image prey; 
     private Image face; 
-    private YB_Prey Prey;
+    private YB_Prey yb_prey;
     private YB_Snake snake; 
 
     public YB_GameBoard() {
-        // CONTRUCTOR FOR SNAKE AND PREY
+        super();
         snake = new YB_Snake();
-        Prey = new YB_Prey();
+        yb_prey = new YB_Prey();
 
         initBoard();
     }
 
     // gameboard
     private void initBoard() {
-
-        addKeyListener(new TAdapter());
+        // removed TAdapter
+        addKeyListener(this);
         setBackground(Color.black);
         setFocusable(true);
 
@@ -68,7 +73,7 @@ public class YB_GameBoard extends JPanel implements ActionListener {
     private void loadImages() {
 
         tail = snake.tail;
-        prey = Prey.smile;
+        prey = yb_prey.smile;
         face = snake.face;
     }
 
@@ -82,7 +87,7 @@ public class YB_GameBoard extends JPanel implements ActionListener {
             y[z] = 50;
         }
 
-        Prey.position(RAND_POS,DOT_SIZE);
+        yb_prey.position(RAND_POS,DOT_SIZE);
         timer = new Timer(DELAY, this);
         timer.start();
     }
@@ -99,8 +104,8 @@ public class YB_GameBoard extends JPanel implements ActionListener {
     private void doDrawing(Graphics g) {
 
         if (inGame) {
-            // IMAGE OF PREY IS DRAWN
-            g.drawImage(prey,Prey.PreyAlongX,Prey.PreyAlongY, this);
+
+            g.drawImage(prey,yb_prey.PreyAlongX,yb_prey.PreyAlongY, this);
 
             for (int z = 0; z < dots; z++) {
                 if (z == 0) {
@@ -119,7 +124,7 @@ public class YB_GameBoard extends JPanel implements ActionListener {
     }
 
     private void gameOver(Graphics g) {
-        // CODE TO WRITE "GAME OVER " ON THE PANEL WHICH IS NOT REQUIRED!!!! 
+
         //String msg = "Game Over";
         //Font small = new Font("Times New Roman", Font.BOLD, 12);
         //FontMetrics metr = getFontMetrics(small);
@@ -187,12 +192,12 @@ public class YB_GameBoard extends JPanel implements ActionListener {
     }
 
     // gameboard
-    @Override
+    //@Override
     public void actionPerformed(ActionEvent e) {
 
         if (inGame) {
 
-            Prey.checkPrey(x[0],y[0],RAND_POS,DOT_SIZE);
+            yb_prey.SnakePreyCollision(x[0],y[0],RAND_POS,DOT_SIZE);
             Collision();
             move();
         }
@@ -200,53 +205,63 @@ public class YB_GameBoard extends JPanel implements ActionListener {
         repaint();
     }
 
-    private class TAdapter extends KeyAdapter {
-        @Override
-        public void keyPressed(KeyEvent e) {
+    //private class TAdapter extends KeyAdapter {
+    //  @Override
+    public void keyPressed(KeyEvent e) {
 
-            int key = e.getKeyCode();
+        int key = e.getKeyCode();
+        switch (key) {
 
-            if ((key == KeyEvent.VK_LEFT) && (!rightDirection)) {
-                leftDirection = true;
-                upDirection = false;
-                downDirection = false;
-            }
+            case KeyEvent.VK_LEFT :
+            leftDirection = true;
+            upDirection = false;
+            downDirection = false;
+            break;
 
-            if ((key == KeyEvent.VK_RIGHT) && (!leftDirection)) {
-                rightDirection = true;
-                upDirection = false;
-                downDirection = false;
-            }
+            case KeyEvent.VK_RIGHT: 
+            rightDirection = true;
+            upDirection = false;
+            downDirection = false;
+            break;
 
-            if ((key == KeyEvent.VK_UP) && (!downDirection)) {
-                upDirection = true;
-                rightDirection = false;
-                leftDirection = false;
-            }
+            case KeyEvent.VK_UP: 
+            upDirection = true;
+            rightDirection = false;
+            leftDirection = false;
+            break;
 
-            if ((key == KeyEvent.VK_DOWN) && (!upDirection)) {
-                downDirection = true;
-                rightDirection = false;
-                leftDirection = false;
-            }
-            //SPACE BAR USED TO PAUE THE GAME!!
-            //if ( key == KeyEvent.VK_SPACE){
-            //  downDirection = false;
+            case KeyEvent.VK_DOWN: 
+            downDirection = true;
+            rightDirection = false;
+            leftDirection = false;
+            break;    
+
+            //case KeyEvent.VK_SPACE:
+            //downDirection = false;
             //upDirection = false;
             //leftDirection = false;
             //rightDirection = false;
-            //IMPLEMENTED ANOTHER FUNCTION FOR PLAY/PAUSE BOTH
-            if (key == KeyEvent.VK_SPACE ){            
-                inGame = !inGame;        
-            }           
+            //break;
+
+            //case KeyEvent.VK_SPACE && inGame:
+        }
+        if (key == KeyEvent.VK_SPACE ){            
+            inGame = !inGame;        
+
             if (key == KeyEvent.VK_SPACE && !inGame) {   
                 timer.stop();          
             }           
             else if (key == KeyEvent.VK_SPACE && inGame ){  
                 timer.start();           
             }
-
         }
+    }
+
+    public void keyReleased(KeyEvent e) {
+    }
+
+    public void keyTyped(KeyEvent e) {
     }
 }
 
+        

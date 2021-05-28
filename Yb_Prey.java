@@ -1,12 +1,6 @@
-import java.awt.Graphics;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Image;
-import javax.swing.JFrame;
-import java.awt.EventQueue;
-import javax.swing.JPanel;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;  
+ 
 /**
  * Class Prey represents any prey object.
  *
@@ -14,17 +8,18 @@ import javax.swing.JLabel;
  * @Version 2.0
  */
 
-public class YB_Prey extends JFrame {
-    // Image object taken as "smile"
+public class YB_Prey  {
+    // The objects are made for the proper implemetation of the prey
     public Image smile;
     public int PreyAlongX;
     public int PreyAlongY;
     
     
     public YB_Prey() {
+        // Path for the Prey
         smile = new ImageIcon("Images/prey.png").getImage();
-        Dimension size = new Dimension(10, 10);
-        setPreferredSize(size);
+        //Dimension size = new Dimension(10, 10);
+        //setPreferredSize(size);
     }
       
       
@@ -32,22 +27,24 @@ public class YB_Prey extends JFrame {
     * Method Position
     * This allows prey to chnage its position
     */
-    public void position(int RAND_POS,int DOT_SIZE)
+    public void position(int RANDOM_LOCATION,int BODY_SIZE)
     {
-      int r = (int) (Math.random() * RAND_POS);
-        PreyAlongX= ((r * DOT_SIZE));
+        // For the Random position of the prey using X-axis and Y-axis
+      int r = (int) (Math.random() * RANDOM_LOCATION);
+        PreyAlongX= ((r * BODY_SIZE));
     
-        r = (int) (Math.random() * RAND_POS);
-        PreyAlongY = ((r * DOT_SIZE));
+        r = (int) (Math.random() * RANDOM_LOCATION);
+        PreyAlongY = ((r * BODY_SIZE));
     }
         
-    public void checkPrey(int x, int y , int RAND_POS, int DOT_SIZE) 
+    public void SnakePreyCollision(int x, int y , int RANDOM_LOCATION, int BODY_SIZE) 
     {
+        // Collision of snake with prey and its increament. 
     
         if ((x == PreyAlongX) && (y == PreyAlongY)) {
 
-            YB_GameBoard.dots++;
-            position(RAND_POS,DOT_SIZE);
+            YB_GameBoard.BodySnake++;
+            position(RANDOM_LOCATION,BODY_SIZE);
         }
     }     
 }

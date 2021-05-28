@@ -7,5 +7,5 @@ comment2.params=RAND_POS\ DOT_SIZE
 comment2.target=void\ position(int,\ int)
 comment2.text=\r\n\ Method\ Position\r\n\ This\ allows\ prey\ to\ chnage\ its\ position\r\n
 comment3.params=x\ y\ RAND_POS\ DOT_SIZE
-comment3.target=void\ checkPrey(int,\ int,\ int,\ int)
+comment3.target=void\ SnakePreyCollision(int,\ int,\ int,\ int)
 numComments=4
