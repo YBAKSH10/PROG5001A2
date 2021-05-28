@@ -1,12 +1,12 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Collections;
 /**
  * Write a description of class Player here.
  *
      * @author (Yamini)
  * @version (25 April, 2021 version number or a date)
  */
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Collections;
 
 public class YB_PlayerList
 {
