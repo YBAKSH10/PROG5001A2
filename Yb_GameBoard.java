@@ -1,16 +1,11 @@
 import java.awt.Color;
-import java.awt.*;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import java.awt.event.KeyListener;
@@ -26,21 +21,20 @@ import java.awt.event.KeyListener;
 //Syntax for multiple inheritance
 public class YB_GameBoard extends JPanel implements ActionListener, KeyListener {
     //public class YB_GameBoard extends JFrame implements KeyListener{
-    private final int B_WIDTH = 600; 
-    private final int B_HEIGHT = 600;
-    private final int DOT_SIZE = 10;  
-    private final int ALL_DOTS = 900; 
-    private final int RAND_POS = 29; 
-    private final int DELAY = 140; 
-    private final int x[] = new int[ALL_DOTS]; 
-    private final int y[] = new int[ALL_DOTS]; 
-    public static int dots;
-
-    private boolean leftDirection = false; 
-    private boolean rightDirection = true; 
-    private boolean upDirection = false;
-    private boolean downDirection = false; 
-    private boolean inGame = true;
+    private final int BOARD_WIDTH = 600; 
+    private final int BOARD_HEIGHT = 600;
+    private final int BODY_SIZE = 10;  
+    private final int MAXIMUM_PREYS = 3600; 
+    private final int RANDOM_LOCATION = 29; 
+    private final int Lag = 140; 
+    private final int x[] = new int[MAXIMUM_PREYS]; 
+    private final int y[] = new int[MAXIMUM_PREYS]; 
+    public static int BodySnake;
+    private boolean WestDirection1 = false; 
+    private boolean EastDirection1 = true; 
+    private boolean NorthDirection1 = false;
+    private boolean SouthDirection1 = false; 
+    private boolean OngoingGame = true;
 
     private Timer timer; 
     private Image tail; 
@@ -48,9 +42,11 @@ public class YB_GameBoard extends JPanel implements ActionListener, KeyListener 
     private Image face; 
     private YB_Prey yb_prey;
     private YB_Snake snake; 
-
-    public YB_GameBoard() {
-        super();
+    
+    
+    YB_SnakeGame PlayGame = null;
+    public YB_GameBoard(YB_SnakeGame PlayGame) {
+        this.PlayGame=PlayGame;
         snake = new YB_Snake();
         yb_prey = new YB_Prey();
 
@@ -64,7 +60,7 @@ public class YB_GameBoard extends JPanel implements ActionListener, KeyListener 
         setBackground(Color.black);
         setFocusable(true);
 
-        setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
+        setPreferredSize(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
         loadImages();
         initGame();
     }
@@ -80,15 +76,15 @@ public class YB_GameBoard extends JPanel implements ActionListener, KeyListener 
     // gameboard
     private void initGame() {
 
-        dots = 3;
+        BodySnake = 3;
 
-        for (int z = 0; z < dots; z++) {
+        for (int z = 0; z < BodySnake; z++) {
             x[z] = 50 - z * 10;
             y[z] = 50;
         }
 
-        yb_prey.position(RAND_POS,DOT_SIZE);
-        timer = new Timer(DELAY, this);
+        yb_prey.position(RANDOM_LOCATION,BODY_SIZE);
+        timer = new Timer(Lag, this);
         timer.start();
     }
 
@@ -96,18 +92,17 @@ public class YB_GameBoard extends JPanel implements ActionListener, KeyListener 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
-        doDrawing(g);
+              doDrawing(g);
 
     }
     // gameboard
     private void doDrawing(Graphics g) {
 
-        if (inGame) {
+        if (OngoingGame) {
 
             g.drawImage(prey,yb_prey.PreyAlongX,yb_prey.PreyAlongY, this);
 
-            for (int z = 0; z < dots; z++) {
+            for (int z = 0; z < BodySnake; z++) {
                 if (z == 0) {
                     g.drawImage(face, x[z], y[z], this);
                 } else {
@@ -132,61 +127,60 @@ public class YB_GameBoard extends JPanel implements ActionListener, KeyListener 
         //g.setColor(Color.white);
         //g.setFont(small);
         //g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
-        YB_SnakeGame game = new YB_SnakeGame("Snake"); 
-        game.setVisible(true);
+       this.PlayGame.GameOverScreen();
 
     }
 
     private void move() {
 
-        for (int z = dots; z > 0; z--) {
+        for (int z = BodySnake; z > 0; z--) {
             x[z] = x[(z - 1)];
             y[z] = y[(z - 1)];
         }
 
-        if (leftDirection) {
-            x[0] -= DOT_SIZE;
+        if (WestDirection1) {
+            x[0] -= BODY_SIZE;
         }
 
-        if (rightDirection) {
-            x[0] += DOT_SIZE;
+        if (EastDirection1) {
+            x[0] += BODY_SIZE;
         }
 
-        if (upDirection) {
-            y[0] -= DOT_SIZE;
+        if (NorthDirection1) {
+            y[0] -= BODY_SIZE;
         }
 
-        if (downDirection) {
-            y[0] += DOT_SIZE;
+        if (SouthDirection1) {
+            y[0] += BODY_SIZE;
         }
     }
 
     private void Collision() {
 
-        for (int z = dots; z > 0; z--) {
+        for (int z = BodySnake; z > 0; z--) {
 
             if ((z > 4) && (x[0] == x[z]) && (y[0] == y[z])) {
-                inGame = false;
+                OngoingGame = false;
             }
         }
-
-        if (y[0] >= B_HEIGHT) {
-            inGame = false;
+        // Collision  with Wlls using if condition
+        if (y[0] >= BOARD_HEIGHT) {
+            OngoingGame = false;
         }
 
         if (y[0] < 0) {
-            inGame = false;
+            OngoingGame = false;
         }
 
-        if (x[0] >= B_WIDTH) {
-            inGame = false;
+        if (x[0] >= BOARD_WIDTH) {
+            OngoingGame = false;
         }
 
         if (x[0] < 0) {
-            inGame = false;
+            OngoingGame = false;
         }
 
-        if (!inGame) {
+        if (!OngoingGame) {
             timer.stop();
         }
     }
@@ -195,9 +189,9 @@ public class YB_GameBoard extends JPanel implements ActionListener, KeyListener 
     //@Override
     public void actionPerformed(ActionEvent e) {
 
-        if (inGame) {
+        if (OngoingGame) {
 
-            yb_prey.SnakePreyCollision(x[0],y[0],RAND_POS,DOT_SIZE);
+            yb_prey.SnakePreyCollision(x[0],y[0],RANDOM_LOCATION,BODY_SIZE);
             Collision();
             move();
         }
@@ -213,27 +207,27 @@ public class YB_GameBoard extends JPanel implements ActionListener, KeyListener 
         switch (key) {
 
             case KeyEvent.VK_LEFT :
-            leftDirection = true;
-            upDirection = false;
-            downDirection = false;
+            WestDirection1 = true;
+            NorthDirection1 = false;
+            SouthDirection1 = false;
             break;
 
             case KeyEvent.VK_RIGHT: 
-            rightDirection = true;
-            upDirection = false;
-            downDirection = false;
+            EastDirection1 = true;
+            NorthDirection1 = false;
+            SouthDirection1 = false;
             break;
 
             case KeyEvent.VK_UP: 
-            upDirection = true;
-            rightDirection = false;
-            leftDirection = false;
+            NorthDirection1 = true;
+            EastDirection1 = false;
+            WestDirection1 = false;
             break;
 
             case KeyEvent.VK_DOWN: 
-            downDirection = true;
-            rightDirection = false;
-            leftDirection = false;
+            SouthDirection1 = true;
+            EastDirection1 = false;
+            WestDirection1 = false;
             break;    
 
             //case KeyEvent.VK_SPACE:
@@ -246,12 +240,12 @@ public class YB_GameBoard extends JPanel implements ActionListener, KeyListener 
             //case KeyEvent.VK_SPACE && inGame:
         }
         if (key == KeyEvent.VK_SPACE ){            
-            inGame = !inGame;        
+            OngoingGame = !OngoingGame;        
 
-            if (key == KeyEvent.VK_SPACE && !inGame) {   
+            if (key == KeyEvent.VK_SPACE && !OngoingGame) {   
                 timer.stop();          
             }           
-            else if (key == KeyEvent.VK_SPACE && inGame ){  
+            else if (key == KeyEvent.VK_SPACE && OngoingGame ){  
                 timer.start();           
             }
         }
