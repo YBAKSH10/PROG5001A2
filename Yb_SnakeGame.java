@@ -156,7 +156,7 @@ public class YB_SnakeGame extends JFrame implements ActionListener {
 
         // Calling class YB_SnakeGame through the object on click play event and quit
       
-        YB_SnakeGame Game1 = null;
+        YB_SnakeGame Game1 ;
         // [https://www.codota.com/code/java/methods/java.awt.event.ActionEvent/getSource]
         if(e.getSource()==ClickToPlay)
         {
