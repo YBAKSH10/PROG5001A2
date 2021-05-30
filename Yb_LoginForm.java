@@ -9,7 +9,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.JOptionPane;
-import java.awt.event.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -28,7 +29,7 @@ public class YB_LoginForm extends JFrame implements ActionListener {
     private YB_PlayerList playerList;
 
     public YB_LoginForm() {
-        super("Login Form");
+        super("Hey!! Welcome to snake Game");
         labelUsername = new JLabel("Enter username: ");
         labelPassword = new JLabel("Enter password: ");   
         textUsername = new JTextField(20);
@@ -91,22 +92,19 @@ public class YB_LoginForm extends JFrame implements ActionListener {
         if (playerList.matchPlayer(username, password)) {
             JOptionPane.showMessageDialog(this, username + ": login successfully");
 
-            JFrame frame1 = new JFrame();
-            frame1.add(new YB_GameBoard());
+            // Object of class YB_SnakeGame to call the respective class
+            YB_SnakeGame PlayGame = new YB_SnakeGame("Snake");
 
-            frame1.setResizable(false);
-            frame1.pack();
-
-            frame1.setTitle("FRAME-1 SNAKE");
-            frame1.setLocationRelativeTo(null);
-            frame1.setVisible(true);
-            frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            PlayGame.setSize(1352,800);
+            PlayGame.setLocationRelativeTo(null);
+            pack();
 
         } else {
             JOptionPane.showMessageDialog(this, "wrong username or password");
         }
 
     }
+
     private void readPlayerFromFile(String fileName) throws FileNotFoundException{
         File file = new File(fileName);
 
