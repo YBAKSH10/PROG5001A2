@@ -44,7 +44,7 @@ public class YB_GameBoard extends JPanel implements ActionListener, KeyListener 
     private YB_Snake snake; 
     
     
-    YB_SnakeGame PlayGame = null;
+    YB_SnakeGame PlayGame ;
     public YB_GameBoard(YB_SnakeGame PlayGame) {
         this.PlayGame=PlayGame;
         snake = new YB_Snake();
